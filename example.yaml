@@ -1,1 +1,33 @@
-
+testbed:
+  name: ntp_testbed             # テストベッドの名前
+devices:
+  csr1000v-1:                   # デバイス名（ホスト名)
+    alias: csr1000v-1
+    os: iosxe
+    platform: iosxe
+    type: CSR1000v
+    tacacs:
+      login_prompt: 'login:'    # ログインプロンプトの定義
+      password_prompt: 'Password:' # パスワードプロンプトの定義
+      username: admin           # アクセスするユーザ名
+    passwords:
+      enable: cisco             # ログインパスワード
+      line: cisco
+      tacacs: cisco
+    connections:
+      defaults:
+        class: unicon.Unicon    # コネクターの指定
+      a:                        # Console アクセス情報
+        ip: 172.25.192.134
+        port: 17012
+        protocol: telnet
+      vty:                      # Telnet アクセス情報
+        ip: 10.255.7.248
+        protocol: telnet
+    custom:                     
+      abstraction:              # 抽象化のための設定
+        order:
+        - os
+        - platform
+  iosv-1:
+  (snip)
